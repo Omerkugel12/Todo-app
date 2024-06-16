@@ -132,7 +132,7 @@ function App() {
             <div className="progress-bar">
               <div className="progress-bar-fill" style={{width:`${calculateCompletedPrecentage()}%`}}></div>
             </div>
-            <span>{calculateCompletedPrecentage()}%</span>
+            <span className="precentage">{calculateCompletedPrecentage()}%</span>
           </div>
         </div>
         <div className="statistic-item">

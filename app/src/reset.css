@@ -1,8 +1,8 @@
 :root{
-    --green: #4F9F44;
-    --white: #fff;
-    --black: #000;
-    --gray: #6d6262;
+  --red: #F44509;
+  --white: #fff;
+  --blue: #13274A;
+  --gray: #6d6262;
 }
 
 */
@@ -23,6 +23,7 @@
 body {
   line-height: 1.5rem;
   -webkit-font-smoothing: antialiased;
+  font-family: 'my-font-semi-bold';
 }
 /*
   5. Improve media defaults
@@ -42,7 +43,7 @@ input, button, textarea, select {
 */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
-  color: var(--green);
+  color: var(--red);
 }
 /*
   8. Create a root stacking context

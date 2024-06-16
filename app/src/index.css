@@ -1,9 +1,9 @@
 @import url(./reset.css);
 
 :root{
-  --green: #F44509;
+  --red: #F44509;
   --white: #fff;
-  --black: #13274A;
+  --blue: #13274A;
   --gray: #6d6262;
 }
 
@@ -19,15 +19,77 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 2rem;
   align-items: center;
   color: var(--white);
-  background-color: var(--black);
+  background-color: var(--blue);
   padding-block: 2rem;
+}
+
+h1{
+  font-family: 'my-font-bold';
+}
+
+form{
+  /* width: 50%; */
+  border: 1px solid var(--red);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+ul{
+  padding-inline-start: 0px;
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2em;
+  /* align-items: center; */
+}
+
+li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--white);
+  padding: 1rem;
+}
+
+li div{
+  display: flex;
+  justify-content: space-between;
+  gap:1rem;
+}
+
+.statistics-container{
+  border: 1px solid var(--red);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  /* align-items: center; */
+}
+
+.statistic-item p{
+  color: var(--white);
+}
+
+.progress-bar-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .progress-bar{
   width: 70%;
-  height: 2rem;
+  height: 1rem;
   border-radius: 1rem;
   border: none;
   background-color: rgb(204, 229, 239);
@@ -36,4 +98,7 @@
   background-color: rgb(50, 145, 189);
   height: 100%;
   border-radius: 1rem;
+}
+.precentage{
+  color: rgb(50, 145, 189);
 }

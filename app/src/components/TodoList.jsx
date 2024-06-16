@@ -1,16 +1,15 @@
 import { TodoItem } from "./TodoItem";
 
-export function TodoList(props) {
-    const {todos,toggleTodo,removeTodo} = props
+export function TodoList({todos,toggleTodo,removeTodo} ) {
+  // console.log(todos);
+  // console.log(typeof todos);
     return (
-        <>
         <ul>
           {todos.map((todo) => {
             return (
-              <TodoItem key={todo.id} todo={todo} toggleTodo={props.toggleTodo} removeTodo={props.removeTodo}/>
+              <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} removeTodo={removeTodo}/>
             );
           })}
         </ul>
-        </>
     )
 }

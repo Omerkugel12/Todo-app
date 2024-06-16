@@ -1,15 +1,17 @@
+import { Button } from "@mui/material"
+
 export function AddTodoForm(props) {
-    const {addTodo,newTodoTitle,setNewTodoTitle} = props
+    const {addTodo,newTitleInputRef} = props
     return (
         <form onSubmit={addTodo} id="create-todo-form">
         <h3>Add todo</h3>
         <input
           type="text"
-          value={newTodoTitle}
-          onChange={(ev) => setNewTodoTitle(ev.target.value)}
+          ref={newTitleInputRef}
           placeholder="Enter todo..."
+          required
         />
-        <button className="add-todo-btn">Add todo</button>
+        <Button type="submit" variant="contained" color="success">Add todo</Button>
       </form>
     )
 }

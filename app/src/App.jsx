@@ -1,32 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AddTodoForm } from "./components/AddTodoForm";
 import { TodoList } from "./components/TodoList";
 import { TodoStatistics } from "./components/TodoStatistics";
 import axios from "axios";
+import { Filter } from "./components/Filter";
 
-const todosUrl = "http://localhost:8001/todos/";
+const todosUrl = "http://localhost:8001/todos";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [newTodoTitle, setNewTodoTitle] = useState("");
+  // const [newTodoTitle, setNewTodoTitle] = useState("");
+  const newTitleInputRef = useRef("");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     console.log("hello");
   }, []);
 
-  async function getData() {
-    try {
-      const response = await axios.get(todosUrl);
-      const data = response.data;
-      setTodos(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  useEffect(() => {
+    newTitleInputRef.current.focus();
+    console.log(todos);
+  }, [todos]);
 
   useEffect(() => {
+    async function getData() {
+      try {
+        const response = await axios.get(todosUrl);
+        const data = response.data;
+        console.log(data);
+        setTodos(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
     getData();
-  }, [todos]);
+  }, []);
+
+  const filterTodos = todos.filter((todo) => {
+    return todo.title.toLowerCase().includes(query.toLowerCase());
+  });
 
   // function removeTodo(todoId) {
   //   const updatedTodos = todos.filter((todo) => todo.id !== todoId);
@@ -36,7 +48,7 @@ function App() {
 
   async function removeTodo(todoId) {
     try {
-      await axios.delete(todosUrl + todoId);
+      await axios.delete(`${todosUrl}/${todoId}`);
       setTodos((prevTodos) => {
         return prevTodos.filter((todo) => todo.id !== todoId);
       });
@@ -60,7 +72,7 @@ function App() {
 
   async function toggleTodo(todoToUpdate) {
     try {
-      const res = await axios.patch(todosUrl + todoToUpdate.id, {
+      const res = await axios.patch(`${todosUrl}/${todoToUpdate.id}`, {
         isComplete: !todoToUpdate.isComplete,
       });
       const updatedTodo = res.data;
@@ -93,22 +105,19 @@ function App() {
   async function addTodo(ev) {
     ev.preventDefault();
     const newTodo = {
-      title: newTodoTitle,
+      title: newTitleInputRef.current.value,
       isComplete: false,
     };
     try {
       const { data: newTodoPosted } = await axios.post(todosUrl, newTodo);
       setTodos((prevTodos) => {
-        return prevTodos.push(newTodoPosted);
+        return [...prevTodos, newTodoPosted];
       });
+      newTitleInputRef.current.value = "";
     } catch (error) {
       console.log(error);
     }
   }
-
-  // useEffect(()=>{
-  //   console.log(todos);
-  // },[todos])
 
   function completedTodos() {
     const completedTodosArr = todos.filter((todo) => todo.isComplete);
@@ -130,16 +139,13 @@ function App() {
   return (
     <div className="main-container">
       <h1>Todos</h1>
-      <AddTodoForm
-        addTodo={addTodo}
-        newTodoTitle={newTodoTitle}
-        setNewTodoTitle={setNewTodoTitle}
-      />
+      <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
+      <Filter query={query} setQuery={setQuery} />
       {todos.length === 0 ? (
         <p>No available data</p>
       ) : (
         <TodoList
-          todos={todos}
+          todos={filterTodos}
           toggleTodo={toggleTodo}
           removeTodo={removeTodo}
         />

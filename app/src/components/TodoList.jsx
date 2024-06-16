@@ -7,7 +7,7 @@ export function TodoList(props) {
         <ul>
           {todos.map((todo) => {
             return (
-              <TodoItem todo={todo} toggleTodo={props.toggleTodo} removeTodo={props.removeTodo}/>
+              <TodoItem key={todo.id} todo={todo} toggleTodo={props.toggleTodo} removeTodo={props.removeTodo}/>
             );
           })}
         </ul>

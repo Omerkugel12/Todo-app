@@ -7,7 +7,7 @@ export function TodoItem(props) {
                     type="checkbox"
                     id="checkbox"
                     checked={todo.isComplete}
-                    onChange={() => toggleTodo(todo.id)}
+                    onChange={() => toggleTodo(todo)}
                   />
                   <label>{todo.title}</label>
                 </div>

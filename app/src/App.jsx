@@ -1,69 +1,114 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddTodoForm } from "./components/AddTodoForm";
 import { TodoList } from "./components/TodoList";
 import { TodoStatistics } from "./components/TodoStatistics";
+import axios from "axios";
 
-// const todosData = []
-const todosData = [
-  { id: "1", title: "Learn React", isComplete: false },
-  { id: "2", title: "Build a Todo App", isComplete: false },
-  { id: "3", title: "Read JavaScript Documentation", isComplete: true },
-  { id: "4", title: "Write Unit Tests", isComplete: false },
-  { id: "5", title: "Implement Context", isComplete: true },
-  { id: "6", title: "Create Portfolio Website", isComplete: false },
-  { id: "7", title: "Learn TypeScript", isComplete: false },
-  { id: "8", title: "Refactor Codebase", isComplete: true },
-  { id: "9", title: "Optimize Performance", isComplete: false },
-  { id: "10", title: "Deploy to Production", isComplete: true },
-];
-
-function makeId(length) {
-  let result = "";
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
+const todosUrl = "http://localhost:8001/todos/";
 
 function App() {
-  const [todos, setTodos] = useState(todosData);
+  const [todos, setTodos] = useState([]);
   const [newTodoTitle, setNewTodoTitle] = useState("");
 
-  function removeTodo(todoId) {
-    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-    setTodos(updatedTodos);
-    return updatedTodos;
+  useEffect(() => {
+    console.log("hello");
+  }, []);
+
+  async function getData() {
+    try {
+      const response = await axios.get(todosUrl);
+      const data = response.data;
+      setTodos(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  function toggleTodo(todoId) {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === todoId) {
-        return {
-          ...todo,
-          isComplete: !todo.isComplete,
-        };
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
+  useEffect(() => {
+    getData();
+  }, [todos]);
+
+  // function removeTodo(todoId) {
+  //   const updatedTodos = todos.filter((todo) => todo.id !== todoId);
+  //   setTodos(updatedTodos);
+  //   return updatedTodos;
+  // }
+
+  async function removeTodo(todoId) {
+    try {
+      await axios.delete(todosUrl + todoId);
+      setTodos((prevTodos) => {
+        return prevTodos.filter((todo) => todo.id !== todoId);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  function addTodo(ev) {
+  // function toggleTodo(todoId) {
+  //   const updatedTodos = todos.map((todo) => {
+  //     if (todo.id === todoId) {
+  //       return {
+  //         ...todo,
+  //         isComplete: !todo.isComplete,
+  //       };
+  //     }
+  //     return todo;
+  //   });
+  //   setTodos(updatedTodos);
+  // }
+
+  async function toggleTodo(todoToUpdate) {
+    try {
+      const res = await axios.patch(todosUrl + todoToUpdate.id, {
+        isComplete: !todoToUpdate.isComplete,
+      });
+      const updatedTodo = res.data;
+      setTodos((prevTodos) => {
+        return prevTodos.map((todo) => {
+          if (todo.id === todoToUpdate.id) {
+            return updatedTodo;
+          }
+          return todo;
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // function addTodo(ev) {
+  //   ev.preventDefault();
+  //   const newTodo = {
+  //     id: makeId(2),
+  //     title: newTodoTitle,
+  //     isComplete: false,
+  //   };
+
+  //   const updatedTodos = [...todos];
+  //   updatedTodos.push(newTodo);
+  //   setTodos(updatedTodos);
+  //   setNewTodoTitle("");
+  // }
+  async function addTodo(ev) {
     ev.preventDefault();
     const newTodo = {
-      id: makeId(2),
       title: newTodoTitle,
       isComplete: false,
     };
-
-    const updatedTodos = [...todos];
-    updatedTodos.push(newTodo);
-    setTodos(updatedTodos);
-    setNewTodoTitle("");
+    try {
+      const { data: newTodoPosted } = await axios.post(todosUrl, newTodo);
+      setTodos((prevTodos) => {
+        return prevTodos.push(newTodoPosted);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  // useEffect(()=>{
+  //   console.log(todos);
+  // },[todos])
 
   function completedTodos() {
     const completedTodosArr = todos.filter((todo) => todo.isComplete);
@@ -85,13 +130,26 @@ function App() {
   return (
     <div className="main-container">
       <h1>Todos</h1>
-      <AddTodoForm addTodo={addTodo} newTodoTitle={newTodoTitle} setNewTodoTitle={setNewTodoTitle} />
+      <AddTodoForm
+        addTodo={addTodo}
+        newTodoTitle={newTodoTitle}
+        setNewTodoTitle={setNewTodoTitle}
+      />
       {todos.length === 0 ? (
         <p>No available data</p>
       ) : (
-        <TodoList todos={todos} toggleTodo={toggleTodo} removeTodo={removeTodo}/>
+        <TodoList
+          todos={todos}
+          toggleTodo={toggleTodo}
+          removeTodo={removeTodo}
+        />
       )}
-      <TodoStatistics todos={todos} completedTodos={completedTodos} calculateCompletedPrecentage={calculateCompletedPrecentage} activeTodos={activeTodos}/>
+      <TodoStatistics
+        todos={todos}
+        completedTodos={completedTodos}
+        calculateCompletedPrecentage={calculateCompletedPrecentage}
+        activeTodos={activeTodos}
+      />
     </div>
   );
 }

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { AddTodoForm } from "./components/AddTodoForm";
+import { TodoList } from "./components/TodoList";
+import { TodoStatistics } from "./components/TodoStatistics";
 
 // const todosData = []
 const todosData = [
@@ -82,64 +85,13 @@ function App() {
   return (
     <div className="main-container">
       <h1>Todos</h1>
-      <form onSubmit={addTodo} id="create-todo-form">
-        <h3>Add todo</h3>
-        <input
-          type="text"
-          value={newTodoTitle}
-          onChange={(ev) => setNewTodoTitle(ev.target.value)}
-          placeholder="Enter todo..."
-        />
-        <button className="add-todo-btn">Add todo</button>
-      </form>
+      <AddTodoForm addTodo={addTodo} newTodoTitle={newTodoTitle} setNewTodoTitle={setNewTodoTitle} />
       {todos.length === 0 ? (
         <p>No available data</p>
       ) : (
-        <ul>
-          {todos.map((todo) => {
-            return (
-              <li key={todo.id}>
-                <div className="input-and-labael">
-                  <input
-                    type="checkbox"
-                    id="checkbox"
-                    checked={todo.isComplete}
-                    onChange={() => toggleTodo(todo.id)}
-                  />
-                  <label>{todo.title}</label>
-                </div>
-                <button
-                  className="remove-todo-btn"
-                  onClick={() => removeTodo(todo.id)}
-                >
-                  Remove
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <TodoList todos={todos} toggleTodo={toggleTodo} removeTodo={removeTodo}/>
       )}
-      <div className="statistics-container">
-        <h3>Statistics</h3>
-        <div className="statistic-item">
-          <p>Total todos:</p>
-          <p>{todos.length}</p>
-        </div>
-        <div className="statistic-item">
-          <p>Completed todos:</p>
-          <p>{completedTodos()}</p>
-          <div className="progress-bar-container">
-            <div className="progress-bar">
-              <div className="progress-bar-fill" style={{width:`${calculateCompletedPrecentage()}%`}}></div>
-            </div>
-            <span className="precentage">{calculateCompletedPrecentage()}%</span>
-          </div>
-        </div>
-        <div className="statistic-item">
-          <p>Active todos:</p>
-          <p>{activeTodos()}</p>
-        </div>
-      </div>
+      <TodoStatistics todos={todos} completedTodos={completedTodos} calculateCompletedPrecentage={calculateCompletedPrecentage} activeTodos={activeTodos}/>
     </div>
   );
 }

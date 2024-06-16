@@ -1,0 +1,39 @@
+@import url(./reset.css);
+
+:root{
+  --green: #F44509;
+  --white: #fff;
+  --black: #13274A;
+  --gray: #6d6262;
+}
+
+#root{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-container{
+  margin-block: 3rem;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+  background-color: var(--black);
+  padding-block: 2rem;
+}
+
+.progress-bar{
+  width: 70%;
+  height: 2rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: rgb(204, 229, 239);
+}
+.progress-bar-fill{
+  background-color: rgb(50, 145, 189);
+  height: 100%;
+  border-radius: 1rem;
+}

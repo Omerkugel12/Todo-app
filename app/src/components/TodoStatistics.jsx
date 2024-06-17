@@ -18,7 +18,7 @@ export function TodoStatistics(props) {
             {/* <div className="progress-bar">
               <div className="progress-bar-fill" style={{width:`${calculateCompletedPrecentage()}%`}}></div>
             </div> */}
-            <span className="precentage">{calculateCompletedPrecentage()}%</span>
+            <span className="precentage">{calculateCompletedPrecentage().toFixed(2)}%</span>
           </div>
       </div>
       <div className="statistic-item">

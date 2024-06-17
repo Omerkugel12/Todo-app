@@ -1,6 +1,9 @@
 import { Button } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@mui/material/TextField";
+import RefreshIcon from '@mui/icons-material/Refresh';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 export function Filter({query,setQuery,setFilterByIsComplete}) {
 
@@ -20,9 +23,9 @@ export function Filter({query,setQuery,setFilterByIsComplete}) {
                 </Button>
             </form>
             <div>
-                <button onClick={()=>setFilterByIsComplete('all')}>All todos</button>
-                <button onClick={()=>setFilterByIsComplete('active')}>Actives</button>
-                <button onClick={()=>setFilterByIsComplete('complete')}>Completed</button>
+                <button onClick={()=>setFilterByIsComplete('all')} >All{<RefreshIcon/>}</button>
+                <button onClick={()=>setFilterByIsComplete('active')}>Actives{<CheckBoxOutlineBlankIcon/>}</button>
+                <button onClick={()=>setFilterByIsComplete('complete')}>Completed{<CheckBoxIcon/>}</button>
             </div>
         </div>
     )

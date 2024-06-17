@@ -2,7 +2,7 @@ import { Button } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from "@mui/material/TextField";
 
-export function Filter({query,setQuery}) {
+export function Filter({query,setQuery,setFilterByIsComplete}) {
 
     return (
         <div className="filters">
@@ -19,6 +19,11 @@ export function Filter({query,setQuery}) {
                     <SearchIcon/>
                 </Button>
             </form>
+            <div>
+                <button onClick={()=>setFilterByIsComplete('all')}>All todos</button>
+                <button onClick={()=>setFilterByIsComplete('active')}>Actives</button>
+                <button onClick={()=>setFilterByIsComplete('complete')}>Completed</button>
+            </div>
         </div>
     )
 }

@@ -12,6 +12,18 @@ function App() {
   // const [newTodoTitle, setNewTodoTitle] = useState("");
   const newTitleInputRef = useRef("");
   const [query, setQuery] = useState("");
+  const [filterByIsComplete,setFilterByIsComplete] = useState('all')
+
+  const filterTodos = todos.filter((todo) => {
+    const isMatchByTitle = todo.title.toLowerCase().includes(query.toLowerCase());
+    if (filterByIsComplete === 'all') {
+      return isMatchByTitle
+    } else if (filterByIsComplete === 'active') {
+      return isMatchByTitle && todo.isComplete === false
+    } else if (filterByIsComplete === 'complete') {
+      return isMatchByTitle && todo.isComplete === true
+    }
+  })
 
   useEffect(() => {
     // console.log("hello");
@@ -35,9 +47,7 @@ function App() {
     getData();
   }, []);
 
-  const filterTodos = todos.filter((todo) => {
-    return todo.title.toLowerCase().includes(query.toLowerCase());
-  });
+  
   
   // function removeTodo(todoId) {
   //   const updatedTodos = todos.filter((todo) => todo.id !== todoId);
@@ -135,11 +145,13 @@ function App() {
     return (completedTodos() / todos.length) * 100;
   }
 
+  
+
   return (
     <div className="main-container">
       <h1>Todos</h1>
       <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
-      <Filter query={query} setQuery={setQuery} />
+      <Filter query={query} setQuery={setQuery} filterByIsComplete={filterByIsComplete} setFilterByIsComplete={setFilterByIsComplete}/>
       {todos.length === 0 ? (
         <p>No available data</p>
       ) : (

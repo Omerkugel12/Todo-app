@@ -14,7 +14,7 @@ export function TodoStatistics(props) {
         <p>Completed todos:</p>
         <p>{completedTodos()}</p>
         <div className="progress-bar-container">
-        <CircularProgress variant="determinate" value={calculateCompletedPrecentage()} />
+        <CircularProgress variant="determinate" value={calculateCompletedPrecentage() } />
             {/* <div className="progress-bar">
               <div className="progress-bar-fill" style={{width:`${calculateCompletedPrecentage()}%`}}></div>
             </div> */}

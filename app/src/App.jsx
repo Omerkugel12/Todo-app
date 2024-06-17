@@ -4,35 +4,34 @@ import { TodoList } from "./components/TodoList";
 import { TodoStatistics } from "./components/TodoStatistics";
 import axios from "axios";
 import { Filter } from "./components/Filter";
+import { Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage";
+import TodoPage from "./pages/TodoPage";
+import TodoDetailsPage from "./pages/TodoDetailsPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import CreateTodoPage from "./pages/CreateTodoPage";
+import SideBar from "./components/SideBar";
 
 const todosUrl = "http://localhost:8001/todos";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  // const [newTodoTitle, setNewTodoTitle] = useState("");
   const newTitleInputRef = useRef("");
   const [query, setQuery] = useState("");
-  const [filterByIsComplete,setFilterByIsComplete] = useState('all')
+  const [filterByIsComplete, setFilterByIsComplete] = useState("all");
 
   const filterTodos = todos.filter((todo) => {
-    const isMatchByTitle = todo.title.toLowerCase().includes(query.toLowerCase());
-    if (filterByIsComplete === 'all') {
-      return isMatchByTitle
-    } else if (filterByIsComplete === 'active') {
-      return isMatchByTitle && todo.isComplete === false
-    } else if (filterByIsComplete === 'complete') {
-      return isMatchByTitle && todo.isComplete === true
+    const isMatchByTitle = todo.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
+    if (filterByIsComplete === "all") {
+      return isMatchByTitle;
+    } else if (filterByIsComplete === "active") {
+      return isMatchByTitle && todo.isComplete === false;
+    } else if (filterByIsComplete === "complete") {
+      return isMatchByTitle && todo.isComplete === true;
     }
-  })
-
-  useEffect(() => {
-    // console.log("hello");
-  }, []);
-
-  useEffect(() => {
-    // newTitleInputRef.current.focus();
-    // console.log(todos);
-  }, [todos]);
+  });
 
   useEffect(() => {
     async function getData() {
@@ -47,14 +46,6 @@ function App() {
     getData();
   }, []);
 
-  
-  
-  // function removeTodo(todoId) {
-  //   const updatedTodos = todos.filter((todo) => todo.id !== todoId);
-  //   setTodos(updatedTodos);
-  //   return updatedTodos;
-  // }
-
   async function removeTodo(todoId) {
     try {
       await axios.delete(`${todosUrl}/${todoId}`);
@@ -65,19 +56,6 @@ function App() {
       console.log(error);
     }
   }
-
-  // function toggleTodo(todoId) {
-  //   const updatedTodos = todos.map((todo) => {
-  //     if (todo.id === todoId) {
-  //       return {
-  //         ...todo,
-  //         isComplete: !todo.isComplete,
-  //       };
-  //     }
-  //     return todo;
-  //   });
-  //   setTodos(updatedTodos);
-  // }
 
   async function toggleTodo(todoToUpdate) {
     try {
@@ -98,19 +76,6 @@ function App() {
     }
   }
 
-  // function addTodo(ev) {
-  //   ev.preventDefault();
-  //   const newTodo = {
-  //     id: makeId(2),
-  //     title: newTodoTitle,
-  //     isComplete: false,
-  //   };
-
-  //   const updatedTodos = [...todos];
-  //   updatedTodos.push(newTodo);
-  //   setTodos(updatedTodos);
-  //   setNewTodoTitle("");
-  // }
   async function addTodo(ev) {
     ev.preventDefault();
     const newTodo = {
@@ -145,29 +110,37 @@ function App() {
     return (completedTodos() / todos.length) * 100;
   }
 
-  
-
   return (
-    <div className="main-container">
-      <h1>Todos</h1>
-      <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
-      <Filter query={query} setQuery={setQuery} filterByIsComplete={filterByIsComplete} setFilterByIsComplete={setFilterByIsComplete}/>
-      {todos.length === 0 ? (
-        <p>No available data</p>
-      ) : (
-        <TodoList
-          todos={filterTodos}
-          toggleTodo={toggleTodo}
-          removeTodo={removeTodo}
-        />
-      )}
-      <TodoStatistics
-        todos={todos}
-        completedTodos={completedTodos}
-        calculateCompletedPrecentage={calculateCompletedPrecentage}
-        activeTodos={activeTodos}
-      />
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/todo" element={<SideBar />}>
+        <Route index element={<TodoPage />} />
+        <Route path=":todoId" element={<TodoDetailsPage />} />
+        <Route path="create" element={<CreateTodoPage />} />
+      </Route>
+      <Route path="/*" element={<NotFoundPage />} />
+    </Routes>
+
+    //   <div className="main-container">
+    //     <h1>Todos</h1>
+    //     <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
+    //     <Filter query={query} setQuery={setQuery} filterByIsComplete={filterByIsComplete} setFilterByIsComplete={setFilterByIsComplete}/>
+    //     {todos.length === 0 ? (
+    //       <p>No available data</p>
+    //     ) : (
+    //       <TodoList
+    //         todos={filterTodos}
+    //         toggleTodo={toggleTodo}
+    //         removeTodo={removeTodo}
+    //       />
+    //     )}
+    //     <TodoStatistics
+    //       todos={todos}
+    //       completedTodos={completedTodos}
+    //       calculateCompletedPrecentage={calculateCompletedPrecentage}
+    //       activeTodos={activeTodos}
+    //     />
+    //   </div>
   );
 }
 

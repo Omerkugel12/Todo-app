@@ -1,22 +1,25 @@
+import { Button } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
+import Checkbox from "@mui/material/Checkbox";
+import Tooltip from '@mui/material/Tooltip';
+
 export function TodoItem(props) {
     const {todo,toggleTodo,removeTodo} = props
     return (
         <li key={todo.id}>
                 <div className="input-and-labael">
-                  <input
-                    type="checkbox"
-                    id="checkbox"
+                  <Checkbox 
                     checked={todo.isComplete}
-                    onChange={() => toggleTodo(todo)}
-                  />
+                    onChange={() => toggleTodo(todo)}/>
                   <label>{todo.title}</label>
                 </div>
-                <button
-                  className="remove-todo-btn"
+                <Tooltip title="Remove todo" placement="top-start">
+                <Button variant='outlined' color="error"
                   onClick={() => removeTodo(todo.id)}
                 >
-                  Remove
-                </button>
+                  <DeleteIcon/>
+                </Button>
+                </Tooltip>
               </li>
     )
 }

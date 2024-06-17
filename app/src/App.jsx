@@ -14,12 +14,12 @@ function App() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    console.log("hello");
+    // console.log("hello");
   }, []);
 
   useEffect(() => {
-    newTitleInputRef.current.focus();
-    console.log(todos);
+    // newTitleInputRef.current.focus();
+    // console.log(todos);
   }, [todos]);
 
   useEffect(() => {
@@ -27,7 +27,6 @@ function App() {
       try {
         const response = await axios.get(todosUrl);
         const data = response.data;
-        console.log(data);
         setTodos(data);
       } catch (error) {
         console.log(error);
@@ -39,7 +38,7 @@ function App() {
   const filterTodos = todos.filter((todo) => {
     return todo.title.toLowerCase().includes(query.toLowerCase());
   });
-
+  
   // function removeTodo(todoId) {
   //   const updatedTodos = todos.filter((todo) => todo.id !== todoId);
   //   setTodos(updatedTodos);

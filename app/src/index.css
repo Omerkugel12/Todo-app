@@ -42,6 +42,17 @@ form{
   gap: 1rem;
 }
 
+.search-by-name{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #1565C0;
+  padding: 2rem;
+}
+
 ul{
   padding-inline-start: 0px;
   max-width: 60%;
@@ -63,7 +74,8 @@ li{
 li div{
   display: flex;
   justify-content: space-between;
-  gap:1rem;
+  align-items: center;
+  /* gap:0.3rem; */
 }
 
 .statistics-container{

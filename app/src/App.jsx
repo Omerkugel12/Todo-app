@@ -12,8 +12,9 @@ function App() {
     const { href, children } = props;
     return (
       <NavLink
+        className="nav-item"
         style={({ isActive }) => {
-          return isActive ? { color: "red" } : {};
+          return isActive ? { color: "#6d6262" } : {};
         }}
         to={href}
       >
@@ -28,14 +29,10 @@ function App() {
         <h1>Todos</h1>
         <ul className="nav-ul">
           <li>
-            <TopNavBar className="nav-item" href="/">
-              Home
-            </TopNavBar>
+            <TopNavBar href="/">Home</TopNavBar>
           </li>
           <li>
-            <TopNavBar className="nav-item" href="/todo">
-              Todo
-            </TopNavBar>
+            <TopNavBar href="/todo">Todos</TopNavBar>
           </li>
         </ul>
       </nav>

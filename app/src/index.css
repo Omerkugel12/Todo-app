@@ -5,10 +5,10 @@ ul{
 }
 
 :root{
-  --red: #F44509;
-  --white: #fff;
-  --blue: #13274A;
-  --gray: #6d6262;
+  --primary-100: #F1F8E8;
+  --primary-200: #D8EFD3;
+  --primary-400: #95D2B3;
+  --primary-600: #55AD9B;
 }
 
 .main-container-wrapper{
@@ -23,7 +23,7 @@ ul{
   justify-content: space-between;
   align-items: center;
   height: 3rem;
-  background-color: var(--blue);
+  background-color: var(--primary-400);
   padding-inline: 8em;
 }
 
@@ -33,7 +33,7 @@ ul{
 }
 
 .nav-item{
-  color: var(--white);
+  color: var(--primary-200);
   text-decoration: none;
 }
 
@@ -45,8 +45,8 @@ ul{
   justify-content: space-between;
   gap: 2rem;
   align-items: center;
-  color: var(--white);
-  background-color: var(--blue);
+  color: var(--primary-200);
+  background-color: var(--primary-400);
   padding-block: 2rem;
 }
 
@@ -56,7 +56,7 @@ h1{
 
 form{
   /* width: 50%; */
-  border: 1px solid var(--red);
+  border: 1px solid var(--primary-600);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -84,7 +84,7 @@ form{
 
 .filters-buttons{
   display: flex;
-  border: 2px solid var(--white);
+  border: 2px solid var(--primary-200);
   border-radius: 1rem;
   padding: 2rem;
   margin-top: 1rem;
@@ -105,8 +105,10 @@ form{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--white);
+  border-bottom: 1px solid var(--primary-200);
   padding: 1rem;
+  background-color: var(--primary-200);
+  border-radius: 0.5rem;
 }
 
 .todo-list li div{
@@ -117,7 +119,7 @@ form{
 }
 
 .statistics-container{
-  border: 1px solid var(--red);
+  border: 1px solid var(--primary-600);
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -127,7 +129,7 @@ form{
 }
 
 .statistic-item p{
-  color: var(--white);
+  color: var(--primary-200);
 }
 
 .progress-bar-container{

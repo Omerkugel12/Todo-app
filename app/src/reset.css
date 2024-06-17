@@ -1,8 +1,8 @@
 :root{
-  --red: #F44509;
-  --white: #fff;
-  --blue: #13274A;
-  --gray: #6d6262;
+  --primary-100: #F1F8E8;
+  --primary-200: #D8EFD3;
+  --primary-400: #95D2B3;
+  --primary-600: #55AD9B;
 }
 
 */
@@ -43,7 +43,7 @@ input, button, textarea, select {
 */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
-  color: var(--red);
+  color: var(--primary-600);
 }
 /*
   8. Create a root stacking context

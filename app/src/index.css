@@ -170,3 +170,31 @@ a{
   width: 20rem;
   height: 20rem;
 }
+
+.sidenav {
+  height: 100%;
+  width: 7rem;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(77, 47, 47);
+  overflow-x: hidden;
+  padding: 1rem;
+}
+
+.sidenav a {
+  padding: 1rem;
+  text-decoration: none;
+  /* font-size: 25px; */
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.side-bar-btn{
+  margin-left: 9rem;
+}

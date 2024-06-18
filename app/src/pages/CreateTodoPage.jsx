@@ -1,10 +1,16 @@
 import React from "react";
 import { AddTodoForm } from "../components/AddTodoForm";
 import { useRef } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate, useOutletContext } from "react-router";
+import axios from "axios";
+
+const todosUrl = "http://localhost:8001/todos";
 
 function CreateTodoPage() {
+  const [todos, setTodos] = useOutletContext();
   const newTitleInputRef = useRef("");
+  const navigate = useNavigate();
+
   async function addTodo(ev) {
     ev.preventDefault();
     const newTodo = {
@@ -17,16 +23,20 @@ function CreateTodoPage() {
         return [...prevTodos, newTodoPosted];
       });
       newTitleInputRef.current.value = "";
+      navigate("/todo");
     } catch (error) {
       console.log(error);
     }
   }
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
-      </div>
-    </div>
+    <>
+      {/* // <div className="modal">
+    //   <div className="modal-content"> */}
+      <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
+      <Outlet />
+      {/* </div>
+    </div> */}
+    </>
   );
 }
 

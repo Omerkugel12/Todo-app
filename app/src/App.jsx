@@ -38,11 +38,10 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/todo" element={<SideBar />}> */}
         <Route path="/todo" element={<SideBar />}>
           <Route index element={<TodoPage />} />
-          <Route path=":todoId" element={<TodoDetailsPage />} />
           <Route path="create" element={<CreateTodoPage />} />
+          <Route path=":todoId" element={<TodoDetailsPage />} />
         </Route>
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>

@@ -13,7 +13,7 @@ function TodoPage() {
   const [todos, setTodos] = useOutletContext(); //defined in page SideBar which is the parent of 'todo' url
   const [query, setQuery] = useState("");
   const [filterByIsComplete, setFilterByIsComplete] = useState("all");
-  // const [isOpeningModal, setIsOpeningModal] = useState(false);
+  const [isOpeningModal, setIsOpeningModal] = useState(false);
   const navigate = useNavigate();
 
   const filterTodos = todos.filter((todo) => {
@@ -113,12 +113,12 @@ function TodoPage() {
           calculateCompletedPrecentage={calculateCompletedPrecentage}
           activeTodos={activeTodos}
         />
-        <button onClick={() => navigate("create")}>Add todo</button>
-        {/* {isOpeningModal ? (
+        <button onClick={() => setIsOpeningModal(true)}>Add todo</button>
+        {isOpeningModal ? (
           <div className="create-modal">
             <Navigate to={"create"} />
           </div>
-        ) : null} */}
+        ) : null}
       </div>
     </div>
   );

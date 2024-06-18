@@ -4,12 +4,12 @@ import { TodoList } from "../components/TodoList";
 import { TodoStatistics } from "../components/TodoStatistics";
 import axios from "axios";
 import { Filter } from "../components/Filter";
+import { Outlet, useOutletContext } from "react-router";
 
 const todosUrl = "http://localhost:8001/todos";
 
 function TodoPage() {
-  const [todos, setTodos] = useState([]);
-
+  const [todos, setTodos] = useOutletContext(); //defined in page SideBar which is the parent of 'todo' url
   const [query, setQuery] = useState("");
   const [filterByIsComplete, setFilterByIsComplete] = useState("all");
 
@@ -104,12 +104,15 @@ function TodoPage() {
             removeTodo={removeTodo}
           />
         )}
+        <Outlet context={[todos, setTodos]} />
         <TodoStatistics
           todos={todos}
           completedTodos={completedTodos}
           calculateCompletedPrecentage={calculateCompletedPrecentage}
           activeTodos={activeTodos}
         />
+        <button>Add todo</button>
+        <dialog></dialog>
       </div>
     </div>
   );

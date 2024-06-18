@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import {
+  Navigate,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router";
 import axios from "axios";
 
 const todosUrl = "http://localhost:8001/todos";
@@ -7,9 +12,11 @@ const todosUrl = "http://localhost:8001/todos";
 function TodoDetailsPage() {
   const { todoId } = useParams();
   const [todo, setTodo] = useState({});
-
+  const navigate = useNavigate();
+  const [todos, setTodos] = useOutletContext(); //defined in page SideBar which is the parent of 'todo' url
+  const [isDeleteing, setisDeleteing] = useState(false);
   useEffect(() => {
-    return async function fetchTodo() {
+    async function fetchTodo() {
       try {
         const res = await axios.get(`${todosUrl}/${todoId}`);
         const data = res.data;
@@ -17,7 +24,8 @@ function TodoDetailsPage() {
       } catch (error) {
         console.log(error);
       }
-    };
+    }
+    fetchTodo();
   }, [todoId]);
 
   async function removeTodo(todoId) {
@@ -26,6 +34,10 @@ function TodoDetailsPage() {
       setTodos((prevTodos) => {
         return prevTodos.filter((todo) => todo.id !== todoId);
       });
+      setisDeleteing(true);
+      setTimeout(() => {
+        navigate("/todo", { replace: true });
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +51,7 @@ function TodoDetailsPage() {
           {todo.isComplete ? <p>Status: Completed</p> : <p>Status: Active</p>}
         </div>
         <button onClick={() => removeTodo(todoId)}>Remove</button>
+        {isDeleteing ? <p>Deleting...</p> : null}
       </div>
     </div>
   );

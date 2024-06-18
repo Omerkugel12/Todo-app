@@ -5,16 +5,18 @@ import { TodoStatistics } from "../components/TodoStatistics";
 import axios from "axios";
 import { Filter } from "../components/Filter";
 import { Navigate, Outlet, useNavigate, useOutletContext } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 const todosUrl = "http://localhost:8001/todos";
 
 function TodoPage() {
   const [todos, setTodos] = useOutletContext(); //defined in page SideBar which is the parent of 'todo' url
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   const [filterByIsComplete, setFilterByIsComplete] = useState("all");
   const [isOpeningModal, setIsOpeningModal] = useState(false);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams({ query: "" });
+  const query = searchParams.get("query");
 
   const filterTodos = todos.filter((todo) => {
     const isMatchByTitle = todo.title
@@ -94,9 +96,10 @@ function TodoPage() {
         <h1>Todos</h1>
         <Filter
           query={query}
-          setQuery={setQuery}
+          // setQuery={setQuery}
           filterByIsComplete={filterByIsComplete}
           setFilterByIsComplete={setFilterByIsComplete}
+          setSearchParams={setSearchParams}
         />
         {todos.length === 0 ? (
           <p>No available data</p>

@@ -8,11 +8,15 @@ function HomePage() {
 
   return (
     <div className="home-container">
-      <h1>Welcome to My Todo List App</h1>
-      <p>
-        Keep track of your tasks and stay organized with our easy-to-use todo
-        list app.
-      </p>
+      <div className="header-home-page-container">
+        <div className="header-home-page">
+          <h1>Welcome to My Todo List App</h1>
+          <p>
+            Keep track of your tasks and stay organized with our easy-to-use
+            todo list app.
+          </p>
+        </div>
+      </div>
 
       <div className="features">
         <h2>Key Features</h2>
@@ -22,9 +26,11 @@ function HomePage() {
           <li>Set reminders and due dates</li>
           <li>Track progress with statistics</li>
         </ul>
-        <Link to="/todo" className="cta-button">
-          Get Started
-        </Link>
+        <button>
+          <Link to="/todo" className="cta-button">
+            Get Started
+          </Link>
+        </button>
       </div>
 
       <div className="statistics">

@@ -198,3 +198,32 @@ a{
 .side-bar-btn{
   margin-left: 9rem;
 }
+
+.home-container{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.header-home-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-home-page-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.features{
+  background-color: var(--primary-600);
+}
+
+.features ul li{
+  list-style-type: circle;
+}

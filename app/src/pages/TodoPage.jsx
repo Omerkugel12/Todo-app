@@ -4,7 +4,8 @@ import { TodoList } from "../components/TodoList";
 import { TodoStatistics } from "../components/TodoStatistics";
 import axios from "axios";
 import { Filter } from "../components/Filter";
-import { Outlet, useOutletContext } from "react-router";
+import { Navigate, Outlet, useNavigate, useOutletContext } from "react-router";
+import { Link } from "react-router-dom";
 
 const todosUrl = "http://localhost:8001/todos";
 
@@ -12,6 +13,8 @@ function TodoPage() {
   const [todos, setTodos] = useOutletContext(); //defined in page SideBar which is the parent of 'todo' url
   const [query, setQuery] = useState("");
   const [filterByIsComplete, setFilterByIsComplete] = useState("all");
+  // const [isOpeningModal, setIsOpeningModal] = useState(false);
+  const navigate = useNavigate();
 
   const filterTodos = todos.filter((todo) => {
     const isMatchByTitle = todo.title
@@ -104,15 +107,18 @@ function TodoPage() {
             removeTodo={removeTodo}
           />
         )}
-        <Outlet context={[todos, setTodos]} />
         <TodoStatistics
           todos={todos}
           completedTodos={completedTodos}
           calculateCompletedPrecentage={calculateCompletedPrecentage}
           activeTodos={activeTodos}
         />
-        <button>Add todo</button>
-        <dialog></dialog>
+        <button onClick={() => navigate("create")}>Add todo</button>
+        {/* {isOpeningModal ? (
+          <div className="create-modal">
+            <Navigate to={"create"} />
+          </div>
+        ) : null} */}
       </div>
     </div>
   );

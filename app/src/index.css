@@ -120,11 +120,13 @@ form{
 
 label{
   color: green;
+  cursor: pointer;
   
 }
 
 a{
   text-decoration: none;
+  cursor: pointer;
 }
 
 .statistics-container{
@@ -162,4 +164,9 @@ a{
 }
 .precentage{
   color: rgb(50, 145, 189);
+}
+
+.create-modal{
+  width: 20rem;
+  height: 20rem;
 }

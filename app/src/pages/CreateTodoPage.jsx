@@ -1,6 +1,7 @@
 import React from "react";
 import { AddTodoForm } from "../components/AddTodoForm";
 import { useRef } from "react";
+import { Outlet } from "react-router";
 
 function CreateTodoPage() {
   const newTitleInputRef = useRef("");
@@ -20,7 +21,13 @@ function CreateTodoPage() {
       console.log(error);
     }
   }
-  return <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />;
+  return (
+    <div className="modal">
+      <div className="modal-content">
+        <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
+      </div>
+    </div>
+  );
 }
 
 export default CreateTodoPage;

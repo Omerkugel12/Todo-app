@@ -11,7 +11,14 @@ export function TodoItem(props) {
       <div className="input-and-labael">
         <Checkbox checked={todo.isComplete} onChange={() => toggleTodo(todo)} />
         <Link to={todo.id}>
-          <label>{todo.title}</label>
+          <label
+            style={{
+              textDecoration: todo.isComplete ? "line-through" : "none",
+              color: todo.isComplete ? "grey" : "",
+            }}
+          >
+            {todo.title}
+          </label>
         </Link>
       </div>
       <Tooltip title="Remove todo" placement="top-start">

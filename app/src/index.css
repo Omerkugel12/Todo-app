@@ -118,6 +118,15 @@ form{
   /* gap:0.3rem; */
 }
 
+label{
+  color: green;
+  
+}
+
+a{
+  text-decoration: none;
+}
+
 .statistics-container{
   border: 1px solid var(--primary-600);
   padding: 1rem;

@@ -30,12 +30,9 @@ function CreateTodoPage() {
   }
   return (
     <>
-      {/* // <div className="modal">
-    //   <div className="modal-content"> */}
+      <button onClick={() => navigate("/todo")}>x</button>
       <AddTodoForm addTodo={addTodo} newTitleInputRef={newTitleInputRef} />
       <Outlet />
-      {/* </div>
-    </div> */}
     </>
   );
 }

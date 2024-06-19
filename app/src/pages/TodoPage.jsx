@@ -119,10 +119,11 @@ function TodoPage() {
         <button onClick={() => setIsOpeningModal(true)}>Add todo</button>
         {isOpeningModal ? (
           <div className="create-modal">
-            <Navigate to={"create"} />
+            <Navigate to="create" />
           </div>
         ) : null}
       </div>
+      {/* <Outlet context={[todos, setTodos]} /> */}
     </div>
   );
 }

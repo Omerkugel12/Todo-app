@@ -1,24 +1,24 @@
 @import url(./reset.css);
 
-ul{
+ul {
   list-style-type: none;
 }
 
-:root{
-  --primary-100: #F1F8E8;
-  --primary-200: #D8EFD3;
-  --primary-400: #95D2B3;
-  --primary-600: #55AD9B;
+:root {
+  --primary-100: #f1f8e8;
+  --primary-200: #d8efd3;
+  --primary-400: #95d2b3;
+  --primary-600: #55ad9b;
 }
 
-.main-container-wrapper{
+.main-container-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.nav-bar{
+.nav-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,17 +27,17 @@ ul{
   padding-inline: 8em;
 }
 
-.nav-ul{
+.nav-ul {
   display: flex;
   gap: 2rem;
 }
 
-.nav-item{
+.nav-item {
   color: var(--primary-200);
   text-decoration: none;
 }
 
-.main-container{
+.main-container {
   margin-block: 3rem;
   width: 60%;
   display: flex;
@@ -50,11 +50,11 @@ ul{
   padding-block: 2rem;
 }
 
-h1{
-  font-family: 'my-font-bold';
+h1 {
+  font-family: "my-font-bold";
 }
 
-form{
+form {
   /* width: 50%; */
   border: 1px solid var(--primary-600);
   border-radius: 1rem;
@@ -66,14 +66,14 @@ form{
   gap: 1rem;
 }
 
-.search-by-name{
+.search-by-name {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   border-radius: 1rem;
-  border: 1px solid #1565C0;
+  border: 1px solid #1565c0;
   padding: 2rem;
 }
 
@@ -82,7 +82,7 @@ form{
   gap: 1rem;
 } */
 
-.filters-buttons{
+.filters-buttons {
   display: flex;
   border: 2px solid var(--primary-200);
   border-radius: 1rem;
@@ -91,7 +91,7 @@ form{
   gap: 1rem;
 }
 
-.todo-list{
+.todo-list {
   padding-inline-start: 0px;
   max-width: 60%;
   display: flex;
@@ -101,7 +101,7 @@ form{
   /* align-items: center; */
 }
 
-.todo-list li{
+.todo-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -111,25 +111,24 @@ form{
   border-radius: 0.5rem;
 }
 
-.todo-list li div{
+.todo-list li div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* gap:0.3rem; */
 }
 
-label{
+label {
   color: green;
   cursor: pointer;
-  
 }
 
-a{
+a {
   text-decoration: none;
   cursor: pointer;
 }
 
-.statistics-container{
+.statistics-container {
   border: 1px solid var(--primary-600);
   padding: 1rem;
   display: flex;
@@ -139,34 +138,34 @@ a{
   /* align-items: center; */
 }
 
-.statistic-item p{
+.statistic-item p {
   color: var(--primary-200);
 }
 
-.progress-bar-container{
+.progress-bar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.progress-bar{
+.progress-bar {
   width: 70%;
   height: 1rem;
   border-radius: 1rem;
   border: none;
   background-color: rgb(204, 229, 239);
 }
-.progress-bar-fill{
+.progress-bar-fill {
   background-color: rgb(50, 145, 189);
   height: 100%;
   border-radius: 1rem;
 }
-.precentage{
+.precentage {
   color: rgb(50, 145, 189);
 }
 
-.create-modal{
+.create-modal {
   width: 20rem;
   height: 20rem;
 }
@@ -195,11 +194,11 @@ a{
   color: #f1f1f1;
 }
 
-.side-bar-btn{
+.side-bar-btn {
   margin-left: 9rem;
 }
 
-.home-container{
+.home-container {
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -207,23 +206,71 @@ a{
   gap: 2rem;
 }
 
-.header-home-page{
+.header-home-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
-.header-home-page-container{
+.header-home-page-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.features{
+.features {
   background-color: var(--primary-600);
+  display: inline-block;
+  padding: 2rem;
+  border-radius: 1rem;
 }
 
-.features ul li{
+.features ul li {
   list-style-type: circle;
+}
+
+.features ul {
+  padding-inline-start: 1em;
+}
+
+.features-btn {
+  color: var(--primary-100);
+  background-color: var(--primary-400);
+  cursor: pointer;
+  border: none;
+  border-radius: 0.4rem;
+  padding-inline: 1.3rem;
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.features-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.statistics {
+  display: inline-block;
+  background-color: var(--primary-600);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.statistics > p {
+  color: #000;
+}
+
+.navigation {
+  display: inline-block;
+}
+
+.start-button {
+  background-color: var(--primary-200);
+  padding: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 2px 2px black;
 }

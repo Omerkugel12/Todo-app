@@ -14,7 +14,7 @@ function TodoDetailsPage() {
   const [todo, setTodo] = useState({});
   const navigate = useNavigate();
   const [todos, setTodos] = useOutletContext(); //defined in page SideBar which is the parent of 'todo' url
-  const [isDeleteing, setisDeleteing] = useState(false);
+  const [isDeleteing, setisDeleteing] = useState(null);
   useEffect(() => {
     async function fetchTodo() {
       try {
@@ -40,6 +40,7 @@ function TodoDetailsPage() {
       }, 3000);
     } catch (error) {
       console.log(error);
+      setisDeleteing(false);
     }
   }
 
@@ -51,7 +52,9 @@ function TodoDetailsPage() {
           {todo.isComplete ? <p>Status: Completed</p> : <p>Status: Active</p>}
         </div>
         <button onClick={() => removeTodo(todoId)}>Remove</button>
+        {/* {isDeleteing ? <p>Deleting...</p> : <p>failed to delete</p>} */}
         {isDeleteing ? <p>Deleting...</p> : null}
+        {isDeleteing === false ? <p>Failed to delete</p> : null}
       </div>
     </div>
   );

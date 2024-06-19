@@ -28,7 +28,7 @@ export function Filter({
           }
           sx={{
             "& input": {
-              color: "white", // Change font color here
+              color: "black", // Change font color here
             },
           }}
           color="info"

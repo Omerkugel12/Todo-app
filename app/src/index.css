@@ -26,6 +26,9 @@ button:hover,
 }
 
 .nav-bar {
+  z-index: 1;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,7 +56,7 @@ button:hover,
   gap: 2rem;
   align-items: center;
   color: var(--primary-200);
-  background-color: var(--primary-400);
+  /* background-color: var(--primary-400); */
   padding-block: 2rem;
 }
 
